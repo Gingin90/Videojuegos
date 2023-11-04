@@ -2,10 +2,10 @@ package com.example.videojuegos.data.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.videojuegos.data.data.local.VideojuegosDAO
-import com.example.superheroescomics.data.local.detail.SuperHeroDetailEntity
+import com.example.videojuegos.data.data.local.detail.VideojuegosDetailEntity
 import com.example.videojuegos.data.data.local.list.VideojuegoEntity
 import com.example.videojuegos.data.data.remote.VideojuegosAPI
+import com.example.videojuegos.data.local.VideojuegosDAO
 
 class Repository(private val videojuegosAPI: VideojuegosAPI, private val videojuegosDAO: VideojuegosDAO) {
 
@@ -13,14 +13,14 @@ class Repository(private val videojuegosAPI: VideojuegosAPI, private val videoju
     fun getSuperHeroesFromEntity(): LiveData<List<VideojuegoEntity>> =
         videojuegosDAO.getSuperHeroes()
 
-    suspend fun getSuperHeroes() {
+    suspend fun getVideojuegos() {
         try {
-            val response = videojuegosAPI.getDataSuperHero() // Aqui llegan los datos
+            val response = videojuegosAPI.getDataVideojuegos() // Aqui llegan los datos
             if (response.isSuccessful) { //Evalua si llegaron los datos
                 val resp = response.body() // Solo obtiene la respuesta, no tiene status
                 resp?.let {
-                    val superHeroEntity = it.map { it.transformToEntity() }
-                    videojuegosDAO.insertSuperHeroes(superHeroEntity)
+                    val VideojuegoEntity = it.map { it.transformToEntity() }
+                    videojuegosDAO.insertVideojuegos(VideojuegoEntity)
                 }
             }
         } catch (exception: Exception) {
@@ -29,7 +29,7 @@ class Repository(private val videojuegosAPI: VideojuegosAPI, private val videoju
     }
 
     //Detalle
-    fun getSuperHeroDetailsFromEntity(id: Int): LiveData<SuperHeroDetailEntity> =
+    fun getSuperHeroDetailsFromEntity(id: Int): LiveData<VideojuegosDetailEntity> =
         videojuegosDAO.getSuperHeroDetails(id)
 
     suspend fun getSuperHeroDetails(id: Int) {
@@ -38,8 +38,8 @@ class Repository(private val videojuegosAPI: VideojuegosAPI, private val videoju
             if (response.isSuccessful) { //Evalua si llegaron los datos
                 val resp = response.body() // Solo obtiene la respuesta, no tiene status
                 resp?.let {
-                    val superHeroDetailEntity = it.transformToDetailEntity()
-                    videojuegosDAO.insertSuperHeroDetails(superHeroDetailEntity)
+                    val videojuegosDetailEntity = it.transformToDetailEntity()
+                    videojuegosDAO.insertVideojuegosDetails(videojuegosDetailEntity)
                 }
             }
         } catch (exception: Exception) {
