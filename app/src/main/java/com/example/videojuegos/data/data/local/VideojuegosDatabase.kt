@@ -4,9 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.videojuegos.data.data.local.detail.VideojuegosDetailEntity
-import com.example.videojuegos.data.data.local.list.VideojuegoEntity
-import com.example.videojuegos.data.local.VideojuegosDAO
 import com.example.videojuegos.data.local.detail.VideojuegosDetailEntity
 import com.example.videojuegos.data.local.list.VideojuegoEntity
 

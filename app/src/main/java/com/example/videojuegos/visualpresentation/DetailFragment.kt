@@ -39,19 +39,13 @@ class DetailFragment : Fragment() {
         viewModel.superHeroDetailLiveData(videoJuegoId.toString().toInt())
             .observe(viewLifecycleOwner) {
                 if (it != null) {
-                    binding.imageViewImageDetail.load(it.imageUrl){
+                    binding.imageV.load(it.imageUrl){
                         placeholder(R.drawable.loading).error(R.drawable.image_not_available)
                     }
                     binding.tvNameDetail.text = it.name.uppercase()
                     binding.tvOriginDetail.text = it.origin
                     binding.tvYearDetail.text = it.year.toString()
-                    binding.tvDetail.text = it.superPower
-                    binding.tvDetail.text = it.color
-                    if (!it.translate) {
-                        binding.tvTranslateDetail.text = getString(R.string.translate_false)
-                    } else {
 
-                        binding.tvTranslateDetail.text = getString(R.string.translate_true)
                     }
                 }
             }

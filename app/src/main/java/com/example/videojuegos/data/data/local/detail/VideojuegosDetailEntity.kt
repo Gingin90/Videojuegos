@@ -10,7 +10,7 @@ data class VideojuegosDetailEntity(
     val name: String,
     val origin: String,
     val imageUrl: String,
-    val descrition:String,
+    val description:String,
     val year: Int,
     val manual: Boolean
 )
