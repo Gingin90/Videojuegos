@@ -10,14 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 
 class DetailFragment : Fragment() {
-    private var superHeroId: String? = null
+    private var videoJuegoId: String? = null
     lateinit var binding: FragmentDetailBinding
     private val viewModel: VideojuegosViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            superHeroId = it.getString("id")
+            videoJuegoId = it.getString("id")
         }
     }
 
@@ -32,14 +32,13 @@ class DetailFragment : Fragment() {
     }
 
     private fun initComponents() {
-        viewModel.superHeroDetailsViewModel(superHeroId.toString().toInt())
+        viewModel.superHeroDetailsViewModel(videoJuegoId.toString().toInt())
 
-        viewModel.superHeroDetailLiveData(superHeroId.toString().toInt())
+        viewModel.superHeroDetailLiveData(videoJuegoId.toString().toInt())
             .observe(viewLifecycleOwner) {
                 if (it != null) {
                     binding.imageViewImageDetail.load(it.imageUrl){
-                        placeholder(R.drawable.loading)
-                        .error(R.drawable.image_not_available)
+                        placeholder(R.drawable.loading).error(R.drawable.image_not_available)
                     }
                     binding.tvNameDetail.text = it.name.uppercase()
                     binding.tvOriginDetail.text = it.origin
@@ -57,7 +56,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun initMailButton() {
-        viewModel.superHeroDetailLiveData(superHeroId.toString().toInt())
+        viewModel.superHeroDetailLiveData(videoJuegoId.toString().toInt())
             .observe(viewLifecycleOwner) {
                 if (it != null) {
                     val asunto = getString(R.string.subject_msn, it.name)
