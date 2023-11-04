@@ -9,6 +9,5 @@ data class VideojuegoEntity(
     val name: String,
     val origin: String,
     val imageUrl: String,
-    val superPower: String,
     val year: Int
 )

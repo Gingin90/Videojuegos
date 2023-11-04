@@ -1,7 +1,9 @@
 package com.example.videojuegos.data.data
 
 
+import com.example.videojuegos.data.data.local.detail.VideojuegosDetailEntity
 import com.example.videojuegos.data.data.local.list.VideojuegoEntity
+import com.example.videojuegos.data.data.remote.detail.VideojuegosDetail
 import com.example.videojuegos.data.data.remote.list.Videojuegos
 
 
@@ -13,8 +15,5 @@ fun VideojuegosDetail.transformToDetailEntity(): VideojuegosDetailEntity = Video
         this.name,
         this.origin,
         this.imageUrl,
-        this.superPower,
         this.year,
-        this.color,
-        this.translate
     )

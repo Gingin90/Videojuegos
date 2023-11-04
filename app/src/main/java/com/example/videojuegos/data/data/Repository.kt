@@ -10,8 +10,8 @@ import com.example.videojuegos.data.local.VideojuegosDAO
 class Repository(private val videojuegosAPI: VideojuegosAPI, private val videojuegosDAO: VideojuegosDAO) {
 
     //Lista
-    fun getSuperHeroesFromEntity(): LiveData<List<VideojuegoEntity>> =
-        videojuegosDAO.getSuperHeroes()
+    fun getVideojuegosFromEntity(): LiveData<List<VideojuegoEntity>> =
+        videojuegosDAO.getVideojueos()
 
     suspend fun getVideojuegos() {
         try {
@@ -29,10 +29,10 @@ class Repository(private val videojuegosAPI: VideojuegosAPI, private val videoju
     }
 
     //Detalle
-    fun getSuperHeroDetailsFromEntity(id: Int): LiveData<VideojuegosDetailEntity> =
-        videojuegosDAO.getSuperHeroDetails(id)
+    fun getVideojuegosDetailsFromEntity(id: Int): LiveData<VideojuegosDetailEntity> =
+        videojuegosDAO.getVideojuegosDetails(id)
 
-    suspend fun getSuperHeroDetails(id: Int) {
+    suspend fun getVideojuegosDetails(id: Int) {
         try {
             val response = videojuegosAPI.getSuperHeroDetails(id) // Aqui llegan los datos
             if (response.isSuccessful) { //Evalua si llegaron los datos

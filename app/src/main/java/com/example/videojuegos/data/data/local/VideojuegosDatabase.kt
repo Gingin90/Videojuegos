@@ -26,7 +26,7 @@ abstract class VideojuegosDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     VideojuegosDatabase::class.java,
-                    "super_heroes_database"
+                    "video_juegos_database"
                 ).build()
 
                 INSTANCE = instance
