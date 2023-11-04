@@ -3,7 +3,7 @@ package com.example.videojuegos.data.data.local.detail
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "super_hero_detail_table")
+@Entity(tableName = "video_juegos_detail_table")
 data class VideojuegosDetailEntity(
     @PrimaryKey val id: Int,
     val name: String,

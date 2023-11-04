@@ -5,22 +5,22 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.superheroescomics.data.local.detail.SuperHeroDetailEntity
+import com.example.videojuegos.data.data.local.detail.VideojuegosDetailEntity
 import com.example.videojuegos.data.data.local.list.VideojuegoEntity
 
 @Dao
 interface VideojuegosDAO {
     //Lista
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSuperHeroes(videojuegoEntity: List<VideojuegoEntity>)
+    suspend fun insertVideoJuegos(videojuegoEntity: List<VideojuegoEntity>)
 
-    @Query("Select * from super_hero_table order by id ASC")
-    fun getSuperHeroes(): LiveData<List<VideojuegoEntity>>
+    @Query("Select * from video_juegos_table order by id ASC")
+    fun getVideojueos(): LiveData<List<VideojuegoEntity>>
 
     //Detalle
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSuperHeroDetails(superHeroDetailEntity: SuperHeroDetailEntity)
+    suspend fun insertSuperHeroDetails(superHeroDetailEntity: VideojuegosDetailEntity)
 
-    @Query("Select * from super_hero_detail_table WHERE id = :id")
-    fun getSuperHeroDetails(id: Int): LiveData<SuperHeroDetailEntity>
+    @Query("Select * from video_juegos_detail_table WHERE id = :id")
+    fun getVideojuegosDetails(id: Int): LiveData<VideojuegosDetailEntity>
 }

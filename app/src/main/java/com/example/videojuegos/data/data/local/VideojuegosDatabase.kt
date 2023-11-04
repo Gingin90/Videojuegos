@@ -4,13 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.superheroescomics.data.local.detail.SuperHeroDetailEntity
+import com.example.videojuegos.data.data.local.detail.VideojuegosDetailEntity
 import com.example.videojuegos.data.data.local.list.VideojuegoEntity
+import com.example.videojuegos.data.local.VideojuegosDAO
 
-@Database(entities = [VideojuegoEntity::class, SuperHeroDetailEntity::class], version = 1)
+@Database(entities = [VideojuegoEntity::class, VideojuegosDetailEntity::class], version = 1)
 abstract class VideojuegosDatabase : RoomDatabase() {
 
-    abstract fun getSuperHeroesDAO(): VideojuegosDAO
+    abstract fun getVideojuegosDAO(): VideojuegosDAO
 
     companion object {
         @Volatile
