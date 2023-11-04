@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.videojuegos.databinding.FragmentDetalleBinding
 
 class DetailFragment : Fragment() {
     private var videoJuegoId: String? = null
-    lateinit var binding: FragmentDetailBinding
+    lateinit var binding: FragmentDetalleBinding
+
     private val viewModel: VideojuegosViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +27,9 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDetailBinding.inflate(layoutInflater)
+        binding = FragmentDetalleBinding.inflate(layoutInflater)
         initComponents()
-        initMailButton()
+        initWspButton()
         return binding.root
     }
 
@@ -43,8 +45,8 @@ class DetailFragment : Fragment() {
                     binding.tvNameDetail.text = it.name.uppercase()
                     binding.tvOriginDetail.text = it.origin
                     binding.tvYearDetail.text = it.year.toString()
-                    binding.tvSuperPowerDetail.text = it.superPower
-                    binding.tvColorDetail.text = it.color
+                    binding.tvDetail.text = it.superPower
+                    binding.tvDetail.text = it.color
                     if (!it.translate) {
                         binding.tvTranslateDetail.text = getString(R.string.translate_false)
                     } else {
@@ -55,21 +57,23 @@ class DetailFragment : Fragment() {
             }
     }
 
-    private fun initMailButton() {
-        viewModel.superHeroDetailLiveData(videoJuegoId.toString().toInt())
+    private fun initWspButton() {
+        viewModel.videoJuegosDetailLiveData(videoJuegoId.toString().toInt())
             .observe(viewLifecycleOwner) {
                 if (it != null) {
-                    val asunto = getString(R.string.subject_msn, it.name)
-                    val message = getString(R.string.body_msn, it.name)
-                    val mail = getString(R.string.addressee_msn)
+                    if (it != null) {
 
-                    binding.floatingActionButtonMail.setOnClickListener {
-                        val intentMail = Intent(Intent.ACTION_SEND, Uri.parse(mail))
-                        intentMail.type = "text/plain"
-                        intentMail.putExtra(Intent.EXTRA_EMAIL, arrayOf(mail))
-                        intentMail.putExtra(Intent.EXTRA_SUBJECT, asunto)
-                        intentMail.putExtra(Intent.EXTRA_TEXT, message)
-                        startActivity(Intent.createChooser(intentMail, "Send Mail"))
+                        binding.floatingActionButtonemail.setOnClickListener {
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            val uri = "whatsapp://send?phone=" + "+5697683223"+
+                                    "&text=" + "Hola" +
+                                    "Quisiera votar por el siguiente juego $it.name"
+                            intent.data = Uri.parse(uri)
+                            startActivity(intent)
+
+                        }
+
+
                     }
                 }
             }

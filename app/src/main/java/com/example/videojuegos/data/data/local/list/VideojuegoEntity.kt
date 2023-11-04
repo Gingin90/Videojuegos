@@ -1,4 +1,4 @@
-package com.example.videojuegos.data.data.local.list
+package com.example.videojuegos.data.local.list
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,5 +9,7 @@ data class VideojuegoEntity(
     val name: String,
     val origin: String,
     val imageUrl: String,
-    val year: Int
+    val description:String,
+    val year: Int,
+    val manual:Boolean,
 )

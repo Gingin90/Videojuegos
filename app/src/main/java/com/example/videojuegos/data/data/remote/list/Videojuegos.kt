@@ -1,4 +1,4 @@
-package com.example.videojuegos.data.data.remote.list
+package com.example.videojuegos.data.remote.list
 
 import com.google.gson.annotations.SerializedName
 

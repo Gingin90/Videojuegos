@@ -1,11 +1,12 @@
-package com.example.videojuegos.data.data
+package com.example.videojuegos.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.videojuegos.data.data.local.detail.VideojuegosDetailEntity
-import com.example.videojuegos.data.data.local.list.VideojuegoEntity
-import com.example.videojuegos.data.data.remote.VideojuegosAPI
+
 import com.example.videojuegos.data.local.VideojuegosDAO
+import com.example.videojuegos.data.local.detail.VideojuegosDetailEntity
+import com.example.videojuegos.data.local.list.VideojuegoEntity
+import com.example.videojuegos.data.remote.VideojuegosAPI
 
 class Repository(private val videojuegosAPI: VideojuegosAPI, private val videojuegosDAO: VideojuegosDAO) {
 
@@ -34,7 +35,7 @@ class Repository(private val videojuegosAPI: VideojuegosAPI, private val videoju
 
     suspend fun getVideojuegosDetails(id: Int) {
         try {
-            val response = videojuegosAPI.getSuperHeroDetails(id) // Aqui llegan los datos
+            val response = videojuegosAPI.getVideojuegosDetails(id) // Aqui llegan los datos
             if (response.isSuccessful) { //Evalua si llegaron los datos
                 val resp = response.body() // Solo obtiene la respuesta, no tiene status
                 resp?.let {

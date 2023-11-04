@@ -1,16 +1,16 @@
-package com.example.videojuegos.data.data.local.detail
+package com.example.videojuegos.data.local.detail
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "video_juegos_detail_table")
 data class VideojuegosDetailEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey
+    val id: Int,
     val name: String,
     val origin: String,
     val imageUrl: String,
-    val superPower: String,
+    val descrition:String,
     val year: Int,
-    val color: String,
-    val translate: Boolean
+    val manual: Boolean
 )

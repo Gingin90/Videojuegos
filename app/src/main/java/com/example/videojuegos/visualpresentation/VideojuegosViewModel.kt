@@ -2,10 +2,11 @@ package com.example.videojuegos.visualpresentation
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.example.videojuegos.data.data.Repository
-import com.example.videojuegos.data.data.local.VideojuegosDatabase
-import com.example.videojuegos.data.data.remote.VideojuegosRetrofit
+import androidx.lifecycle.viewModelScope
+import com.example.videojuegos.data.Repository
 import com.example.videojuegos.data.local.VideojuegosDAO
+import com.example.videojuegos.data.local.VideojuegosDatabase
+import com.example.videojuegos.data.remote.VideojuegosRetrofit
 
 import kotlinx.coroutines.launch
 
@@ -16,16 +17,16 @@ class VideojuegosViewModel(application: Application) : AndroidViewModel(applicat
         val api = VideojuegosRetrofit.getVideojuegosRetrofit()
         val VideojuegosDatabase: VideojuegosDAO =
             VideojuegosDatabase.getDataBase(application).getVideojuegosDAO()
-        repository = Repository(api, videojuegosDataBase)
+        repository = Repository(api, videojuegosDatabase)
     }
 
     //Lista
-    fun superHeroesLiveData() = repository.getSuperHeroesFromEntity()
+    fun superHeroesLiveData() = repository.getVideojuegosFromEntity()
 
     fun getSuperHeroesViewModel() = viewModelScope.launch { repository.getVideojuegos() }
 
     //Detalle
-    fun superHeroDetailLiveData(id: Int) = repository.getSuperHeroDetailsFromEntity(id)
+    fun superHeroDetailLiveData(id: Int) = repository.getVideojuegosDetailsFromEntity(id)
 
     fun superHeroDetailsViewModel(id: Int) =
         viewModelScope.launch { repository.getVideojuegosDetails(id) }
